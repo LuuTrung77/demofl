@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dự đoán giá laptop</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        label {
+            margin: 10px 0 5px;
+            display: block;
+            font-weight: bold;
+        }
+        input[type="number"], select {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        input[type="submit"] {
+            background-color: #5cb85c;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+        }
+        input[type="submit"]:hover {
+            background-color: #4cae4c;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #e9ecef;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Dự đoán giá laptop</h1>
+        <form action="/predict" method="post">
+            <label for="ram">RAM (GB)</label>
+            <input type="number" name="ram" required>
+            
+            <label for="ssd">SSD (GB)</label>
+            <input type="number" name="ssd" required>
+            
+            <label for="cpu">CPU (GHz)</label>
+            <input type="number" name="cpu" required>
+            
+            <label for="screen_refresh_rate">Tần số làm tươi màn hình (Hz)</label>
+            <input type="number" name="screen_refresh_rate" required>
+            
+            <label for="battery">Pin (Wh)</label>
+            <input type="number" name="battery" required>
+            
+            <label for="charging_speed">Tốc độ sạc (W)</label>
+            <input type="number" name="charging_speed" required>
+
+            <label for="model">Chọn mô hình:</label>
+            <select name="model">
+                <option value="linear">Hồi quy tuyến tính</option>
+                <option value="ridge">Hồi quy Ridge</option>
+                <option value="neural">Neural Network</option>
+            </select>
+
+            <input type="submit" value="Dự đoán">
+        </form>
+        {% if prediction %}
+        <div class="result">
+            <h2>Kết quả dự đoán: {{ prediction }}</h2>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
