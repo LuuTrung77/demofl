@@ -120,7 +120,7 @@ def predict():
         return 'Mô hình không hợp lệ!'
 
     # Trả về kết quả dự đoán
-    return f'Giá dự đoán cho laptop là: {prediction[0]:.4f}'
+    return f'Giá dự đoán cho laptop là: {prediction[0]:}'
 
 
 # Chạy ứng dụng Flask
